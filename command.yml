@@ -1,0 +1,15 @@
+--- # ansible-playbook command.yml
+- name: run tasks on demo hosts
+  hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: ensure file exists
+      file:
+        path: /tmp/test_dir
+        state: directory
+    - name: ensure file exists
+      command: touch test_file_3
+      args:
+        chdir: /tmp/test_dir
